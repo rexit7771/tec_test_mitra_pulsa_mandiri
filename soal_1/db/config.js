@@ -12,16 +12,12 @@ let config = {
     }
 };
 
-
-async function connectDB() {
-    try {
-        await sql.connect(config);
-        console.log("Database Connected");
-    } catch (error) {
-        console.error(error);
-    }
-}
-connectDB();
+const pool = new sql.ConnectionPool(config);
 
 
-module.exports = { sql }
+pool.connect()
+    .then(() => console.log("Database connected"))
+    .catch((err) => console.error("Error ==> ", err)
+    );
+
+module.exports = { pool }

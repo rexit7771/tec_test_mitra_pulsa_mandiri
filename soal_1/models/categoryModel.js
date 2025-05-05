@@ -24,19 +24,8 @@ module.exports = class CategoryModel {
 
     static async addCategory(newCategory) {
         try {
-            let id = 1;
-            const categories = await this.getAllCategories();
-
-            if (categories.recordsets.length === 0) {
-                let recent_category = categories.recordsets[categories.recordsets.length - 1]
-                let recent_category_id = recent_category.id;
-                id = recent_category_id + 1;
-            } else {
-                id = 1;
-            }
-
-            const query = `INSERT INTO ${this.tableName} (id, name)
-            VALUES (${id}, '${newCategory.name}')`;
+            const query = `INSERT INTO ${this.tableName} (name)
+            VALUES ('${newCategory.name}')`;
             await sql.query(query);
             return;
         } catch (error) {
