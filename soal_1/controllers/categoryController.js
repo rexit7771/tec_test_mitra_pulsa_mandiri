@@ -4,7 +4,7 @@ module.exports = class CategoryController {
     static async fetchAllCategories(req, res) {
         try {
             const categories = await CategoryService.fetchAllCategories();
-            res.status(200).json({ data: categories.recordsets });
+            res.status(200).json({ data: categories });
         } catch (error) {
             console.error(error);
             res.status(error.status || 500).json({ message: error.message || "Internal Server Error" });
@@ -14,7 +14,7 @@ module.exports = class CategoryController {
     static async fetchCategoryById(req, res) {
         try {
             const category = await CategoryService.fetchCategoryById(req.params.id);
-            res.status(200).json({ data: category.recordset[0] });
+            res.status(200).json({ data: category });
         } catch (error) {
             console.error(error);
             res.status(error.status || 500).json({ message: error.message || "Internal Server Error" });
@@ -44,7 +44,7 @@ module.exports = class CategoryController {
     static async deleteCategoryById(req, res) {
         try {
             await CategoryService.deleteCategory(req.params.id);
-            res.status(200).json({ message: `Category with id ${id} has been deleted` });
+            res.status(200).json({ message: `Category with id ${req.params.id} has been deleted` });
         } catch (error) {
             console.error(error);
             res.status(error.status || 500).json({ message: error.message || "Internal Server Error" });

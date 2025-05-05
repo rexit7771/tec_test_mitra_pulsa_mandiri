@@ -3,8 +3,9 @@ const ProductService = require("../services/productService");
 module.exports = class ProductController {
     static async fetchAllProducts(req, res) {
         try {
-            const products = await ProductService.fetchAllProducts();
-            res.status(200).json({ data: products.recordsets });
+            const query = req.query;
+            const products = await ProductService.fetchAllProducts(query);
+            res.status(200).json({ data: products });
         } catch (error) {
             console.error(error);
             res.status(error.status || 500).json({ message: error.message || "Internal Server Error" });
@@ -14,7 +15,7 @@ module.exports = class ProductController {
     static async fetchProductById(req, res) {
         try {
             const product = await ProductService.fetchProductById(req.params.id);
-            res.status(200).json({ data: product.recordset[0] });
+            res.status(200).json({ data: product });
         } catch (error) {
             console.error(error);
             res.status(error.status || 500).json({ message: error.message || "Internal Server Error" });
@@ -44,7 +45,7 @@ module.exports = class ProductController {
     static async deleteProduct(req, res) {
         try {
             await ProductService.deleteProductById(req.params.id);
-            res.status(200).json({ message: `Product with id ${req.body.id} has been deleted` });
+            res.status(200).json({ message: `Product with id ${req.params.id} has been deleted` });
         } catch (error) {
             console.error(error);
             res.status(error.status || 500).json({ message: error.message || "Internal Server Error" });

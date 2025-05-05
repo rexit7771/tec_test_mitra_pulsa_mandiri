@@ -1,9 +1,10 @@
 const ProductModel = require("../models/productModel");
 
 module.exports = class ProductService {
-    static async fetchAllProducts() {
+    static async fetchAllProducts(query) {
         try {
-            const products = await ProductModel.getAllProducts();
+            const searchQuery = query.search;
+            const products = await ProductModel.getAllProducts(searchQuery);
             return products;
         } catch (error) {
             throw error;
