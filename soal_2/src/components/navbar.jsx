@@ -7,10 +7,10 @@ export default function Navbar() {
         <Link href={"/"} className="btn btn-ghost text-xl">
           Technical Test
         </Link>
-        <Link href={"/addProduct"} className="btn btn-ghost text-l">
+        <Link href={"/add"} className="btn btn-ghost text-l">
           Add Product
         </Link>
-        <Link href={"/editProduct"} className="btn btn-ghost text-l">
+        <Link href={"/edit"} className="btn btn-ghost text-l">
           Edit Product
         </Link>
       </div>
