@@ -10,9 +10,6 @@ export default function Navbar() {
         <Link href={"/add"} className="btn btn-ghost text-l">
           Add Product
         </Link>
-        <Link href={"/edit"} className="btn btn-ghost text-l">
-          Edit Product
-        </Link>
       </div>
     </div>
   );

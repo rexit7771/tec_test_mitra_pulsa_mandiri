@@ -57,7 +57,7 @@ module.exports = class ProductModel {
     static async editProduct(id, editedProduct) {
         try {
             let query = `UPDATE ${this.tableName}
-            SET name=@name, price=@price, stock=@stock
+            SET name=@name, price=@price, stock=@stock, category_id=@category_id
             WHERE id = @id`;
             await pool.request()
                 .input("id", id)

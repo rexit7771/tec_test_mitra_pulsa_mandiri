@@ -20,4 +20,5 @@ pool.connect()
     .catch((err) => console.error("Error ==> ", err)
     );
 
+
 module.exports = { pool }

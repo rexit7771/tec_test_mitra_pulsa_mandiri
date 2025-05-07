@@ -1,27 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
+import { fetchProducts } from "@/action";
+import Link from "next/link";
 
-export default function Home() {
-  const [products, setProducts] = useState([]);
-
-  const fetchProducts = async () => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/products`,
-        {
-          method: "GET",
-        }
-      );
-      const data = await response.json();
-      setProducts(data.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+export default async function Home() {
+  const products = await fetchProducts();
 
   return (
     <div className="overflow-x-auto rounded-box border">
@@ -33,6 +14,7 @@ export default function Home() {
             <th>Price</th>
             <th>Stock</th>
             <th>Category</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -44,6 +26,13 @@ export default function Home() {
                 <td>{product.price}</td>
                 <td>{product.stock}</td>
                 <td>{product.category}</td>
+                <td>
+                  <Link
+                    href={`edit/${product.id}`}
+                    className="btn bg-sky-700 text-white hover:bg-sky-600">
+                    Edit
+                  </Link>
+                </td>
               </tr>
             );
           })}
