@@ -53,7 +53,7 @@ export default async function EditProduct({ params }) {
         <div className="form-control flex flex-col">
           <label htmlFor="">Category</label>
           <select
-            name="category"
+            name="category_id"
             className="select w-100"
             defaultValue={product.category_id}
             required>

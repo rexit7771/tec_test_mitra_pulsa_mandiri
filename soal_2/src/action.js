@@ -29,13 +29,36 @@ export const fetchProductById = async (id) => {
     return productJson.data;
 }
 
+export const addProduct = async (formData) => {
+    try {
+        const body = {
+            name: formData.get("name"),
+            price: Number(formData.get('price')),
+            stock: Number(formData.get("stock")),
+            category_id: Number(formData.get("category_id"))
+        }
+        const response = await fetch(
+            process.env.NEXT_PUBLIC_BASE_URL + "/products",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body),
+            }
+        );
+        const messageJson = await response.json();
+        return messageJson.message;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export const updateProductById = async (formData) => {
     const id = formData.get("id");
     const body = {
         name: formData.get("name"),
         price: Number(formData.get('price')),
         stock: Number(formData.get("stock")),
-        category_id: Number(formData.get("category"))
+        category_id: Number(formData.get("category_id"))
     }
 
     const response = await fetch(
