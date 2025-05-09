@@ -25,7 +25,12 @@ module.exports = class ProductModel {
 
     static async getProductById(id) {
         try {
-            let query = `SELECT * FROM ${this.tableName} WHERE id = @id`;
+            let query = `
+            SELECT p.id, p.name, p.price, p.stock, c.name as category 
+            FROM ${this.tableName} p
+            LEFT JOIN categories c
+            ON p.category_id = c.id
+            WHERE p.id = @id`;
             const product = await pool.request()
                 .input("id", id)
                 .query(query);

@@ -6,6 +6,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/start - Tampilkan command\n"
         "/products - Daftar produk\n"
         "/product <id> - Detail produk\n"
-        "/export - Export semua produk (PDF + Excel)\n"
+        "/exports - Export semua produk (PDF + Excel)\n"
+        "/export <id> - Export Detail produk (PDF + Excel)\n"
     )
     await update.message.reply_text(commands)

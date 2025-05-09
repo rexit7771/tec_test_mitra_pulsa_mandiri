@@ -17,8 +17,8 @@ async def export_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font("Arial", size=12)
-        for product in products :
-            pdf.cell(200, 10, txt=f"{product['id']} - {product['name']}", ln=True)
+        for index, product in enumerate(products) :
+            pdf.cell(200, 10, txt=f"{index+1}. Id Produk: {product['id']}\nNama Produk: {product['name']}\nHarga Produk: {product['price']}\nStock Produk: {product['stock']}\nCategory: {product['category']}", ln=True)
         pdf_path = "exports/products.pdf"
         pdf.output(pdf_path)
 
