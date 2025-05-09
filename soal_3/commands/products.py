@@ -11,7 +11,7 @@ async def products(update: Update, context: ContextTypes.DEFAULT_TYPE):
         products = responseJson['data'];
         msg = ""
         for index, product in enumerate(products):
-            product_info = f"{index+1}: {product['name']}"
+            product_info = f"{index+1}. id: {product['id']} \nproduct: {product['name']} \nprice: {product['price']} \nstock: {product['stock']} \ncategory: {product['category']} \n"
             if msg:
                 msg += "\n" + product_info
             else:

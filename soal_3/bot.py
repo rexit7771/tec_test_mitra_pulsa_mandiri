@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 from commands.start import start
 from commands.products import products
-
+from commands.product_detail import product_detail
 
 
 load_dotenv()
@@ -15,7 +15,7 @@ def main():
 
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("products", products))
-    
+    app.add_handler(CommandHandler("product", product_detail))
     
 
     app.run_polling()
